@@ -37,7 +37,6 @@ function Routes() {
         name="Filme"
         component={Home}
         options={{
-          title: 'Filme',
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
           )
@@ -67,10 +66,18 @@ function Auth() {
           name="App"
           component={Routes}
         />
-        <Stack.Screen
-          name="MovieDetails"
-          component={DetailScreen}
-        />
+
+       <Stack.Screen
+        name="EditarScreen"
+        component={MovieDetails}
+        options={{ headerShown: false }}
+      />
+       <Stack.Screen
+        name="RegisterScreen"
+        component={Register}
+        options={{ headerShown: false }}
+      />
+  
       </Stack.Navigator>
     </NavigationContainer>
   );

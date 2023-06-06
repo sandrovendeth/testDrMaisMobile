@@ -13,9 +13,7 @@ import {
     CheckWrapper,
     TextCheck,
     HourWrapper,
-    Footer
-
-
+    Footer,
 } from './styles';
 import { StatusBar } from "react-native";
 import { Button } from "../../components/Button";

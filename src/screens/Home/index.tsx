@@ -1,48 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Container, Title, Input, MovieList } from './styles';
 import { MovieCard } from '../../components/MovieCard';
 import { StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import  api  from '../../services/api'
+import  { FilmDTO } from '../../dtos/FilmDTO'
 
-
-interface MovieProps {
-  name: string;
-  style: string;
-  duration: string;
-  date: string;
-  hour: string;
-  thumbnail: string;
-  onPress: () => void; 
-}
 
 export function Home() {
+  const [films, setFilms] = useState<FilmDTO[]>([]);
   const navigation = useNavigation<any>();
+  const [loading, setLoading] = useState(true);
 
-  function handleDetails() {
-    navigation.navigate('MovieDetails');
+  function handleDetails(idfilmes: string) {
+    navigation.navigate('EditarScreen', {idfilmes});
   }
 
-  useEffect(() =>{
+  useFocusEffect( 
+    useCallback(()=>{
       async function fetchMovies() {
-        const response = await api.get('http://192.168.0.107:3333/filmes');
-        console.log(response)
-     } 
+        try {
+          const response = await api.get('http://192.168.4.4:3333/filmes');
+          setFilms(response.data);
+      } catch (error) {
+          console.log(error)
+      }finally{
+        setLoading(false);
+      }
+    } 
+   fetchMovies();
+}, [])
+  
+  )
+  
 
-     fetchMovies();
-  }, [])
-
-  const movieData: MovieProps = {
-    name: 'Diamante de Sangue',
-    style: 'Ação',
-    duration: '(1h 36min)',
-    date: '06/06/2023',
-    hour: 'às 14:30h',
-    thumbnail:
-      'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834',
-    onPress: handleDetails, 
-  };
 
   return (
     <Container>
@@ -55,9 +47,9 @@ export function Home() {
       ></Input>
 
       <MovieList
-        data={[1, 2, 3]}
-        keyExtractor={(item) => String(item)}
-        renderItem={({ item }) => <MovieCard data={movieData} onPress={handleDetails}/>} 
+        data={films}
+        keyExtractor={item => item.idfilme}
+        renderItem={({ item }:{item: FilmDTO}) => <MovieCard data={item} onPress={() => handleDetails(item.idfilme)}/>} 
       />
     </Container>
   );

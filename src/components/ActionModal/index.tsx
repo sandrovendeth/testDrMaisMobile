@@ -17,6 +17,7 @@ import { Button } from '../Button';
 interface ModalProps {
   visible: boolean;
   onClose: () => void;
+  handleConfirm: () => void;
   children?: any
 }
 
@@ -26,6 +27,7 @@ const Modal: React.FC<ModalProps> = ({ visible, onClose, children }) => {
     function handleConfirm() {
       navigation.navigate('Filme');
     }
+    
 
   return (
     <RNModal

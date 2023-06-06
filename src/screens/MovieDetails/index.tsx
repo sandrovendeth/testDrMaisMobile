@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import  ActionModal  from "../../components/ActionModal"
 
@@ -20,24 +20,57 @@ import {
     View, 
     Text
 } from './styles';
+import api from '../../services/api';
+import { FilmDTO } from '../../dtos/FilmDTO';
+
+interface Params {
+    idfilmes : string;
+  }
 
 export function MovieDetails() {
 
+  const [films, setFilms] = useState<FilmDTO>(Object);
+
   const [modalVisible, setModalVisible] = useState(false);
 
-
   const navigation = useNavigation<any>();
+
+  const route = useRoute();
+
+  const {idfilmes} = route.params as Params 
+  
     
   function handleEdit() {
     navigation.navigate('Cadastrar');
   }
 
-  function handleDelet() {
-    setModalVisible(true)  
+  async function handleDelet() {
+    
+    try {
+     await api.delete(`/filmes/${idfilmes}`)
+     setModalVisible(true)
+     navigation.navigate('Home')    
+
+  } catch (error) {
+      console.log(error)
+    }
   }
-  function closeModal() {
-    setModalVisible(false)
-  }
+
+  useEffect(() =>{
+    async function fetchDetails() {
+        try {
+            console.log(idfilmes)
+          const response = await api.get(`/filmes/${idfilmes}`)
+            console.log(response)
+          
+          setFilms(response.data);
+      } catch (error) {
+          console.log(error)
+      }
+    } 
+    fetchDetails();
+}, [])
+
  return (
     <Container>      
         <Header>
@@ -49,22 +82,22 @@ export function MovieDetails() {
                 <DetailsWrapper>   
                     <Category>
                         Categoria:{'\n'}
-                        Ação
+                        {films.categoria}
                     </Category>
                     <Duration>
                         Duração:{'\n'}
-                        1h 36m
+                        {films.duracao}
                     </Duration>
                     <DateWatch>
                         Assistir em:{'\n'}
-                        06/06/2023 as 14:30h
+                        {films.data_assistir} as {films.hora_assistir}
                     </DateWatch>
                     
                 </DetailsWrapper>     
             </InfoWrapper>
 
                 <Sinopse>
-                    Um terrorista internacional conhecido apenas como “Diamante Vermelho” traça um plano para colapsar a civilização global: desligar permanentemente todos os computadores do mundo.
+                    {films.sinopse}
                 </Sinopse>
                 <View>
                     <BouncyCheckbox fillColor='black'/>
@@ -85,6 +118,7 @@ export function MovieDetails() {
         </Footer>
 
            <ActionModal 
+                handleConfirm={() => handleDelet()}
                 onClose={() => setModalVisible(false)}
                 visible={modalVisible}
            >

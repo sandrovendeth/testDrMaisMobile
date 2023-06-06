@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 
+import  { FilmDTO } from '../../dtos/FilmDTO'
+
 const movieData = {
   name: 'Diamante de Sangue',
   style: 'Ação',
@@ -44,6 +46,4 @@ export const Input = styled.TextInput`
 `;
 export const MovieList = styled(FlatList).attrs({
     showsVerticalScrollIndicator: false
-})`
-
-`
+})`` as React.ComponentType as new <DataListProps>() => FlatList<DataListProps>;

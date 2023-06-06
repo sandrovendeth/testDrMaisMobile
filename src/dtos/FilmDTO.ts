@@ -10,7 +10,7 @@ export interface FilmDTO {
         
         duracao: string,
         
-        thumbnail: string,
+        imagem: string,
         
         data_assistir: string,
         

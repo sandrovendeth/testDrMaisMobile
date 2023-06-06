@@ -1,13 +1,12 @@
-import 'react-native-gesture-handler'
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Home } from './src/screens/Home';
-import { MovieDetails } from './src/screens/MovieDetails';
-import { Routes } from './src/routes';
+
+import  Auth  from "./src/routes";
+import { Register } from './src/screens/Register';
 
 
 export default function App() {
   return (
-      <Routes />
+      <Register />
   )  
 };

@@ -3,6 +3,8 @@ import React from 'react';
 import {
     Container, View, TextTittle, TextStyle, TextHourDuration, TextDate, TextHour, Image, Content
 } from './styles';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { TouchableOpacityProps } from 'react-native';
 
 interface MovieProps {
     thumbnail: string;
@@ -12,13 +14,13 @@ interface MovieProps {
     date: string;
     hour: string
 }
-interface Props {
+interface Props extends RectButtonProps{
     data: MovieProps
 }
 
-export function MovieCard({ data }: Props) {
+export function MovieCard({ data, ...rest }: Props) {
  return (
-    <Container>
+    <Container {...rest}>
         <Image source = {{uri: data.thumbnail}}/>
         <Content>
             <TextTittle>{data.name}</TextTittle>

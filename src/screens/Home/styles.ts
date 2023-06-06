@@ -1,9 +1,18 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 
+const movieData = {
+  name: 'Diamante de Sangue',
+  style: 'Ação',
+  duration: '(1h 36min)',
+  date: '06/06/2023',
+  hour: 'às 14:30h',
+  thumbnail: 'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834' 
+}
+
 export const Container = styled.View`
   flex: 1;
-  background-color: white;
+
   align-items: flex-start;
   justify-content: flex-start;
   align-items: center;
@@ -30,6 +39,8 @@ export const Input = styled.TextInput`
   border-color: #0D0D0D;
   border-width: 1px;
   margin-bottom: 30px;
+  background-color: white;
+  
 `;
 export const MovieList = styled(FlatList).attrs({
     showsVerticalScrollIndicator: false

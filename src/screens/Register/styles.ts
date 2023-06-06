@@ -33,7 +33,13 @@ export const Input = styled.TextInput`
 `;
 
 export const HourWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+  margin-top: -20px;
+ 
+  
 `;
 export const TextDates = styled.Text`
     margin-top: 10px;
@@ -43,14 +49,17 @@ export const TextDates = styled.Text`
     font-weight: bold;
 `;
 export const Image = styled.Image`
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+    margin-right: 60px;
+    border-radius: 5px;
+    
 `;
 export const View = styled.View`
-  
+  margin-left: 10px;
 `;
 export const BouncyCheckbox = styled.View`
-
+  
 `
 export const CheckWrapper = styled.View`
   flex-direction: row;
@@ -58,5 +67,11 @@ export const CheckWrapper = styled.View`
   margin-left: 10px;
 `;
 export const TextCheck = styled.Text`
-
+  flex: 1;
+`;
+export const Footer = styled.View`
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
 `;

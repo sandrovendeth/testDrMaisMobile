@@ -12,10 +12,12 @@ import {
     CheckWrapper,
     TextCheck,
     HourWrapper,
+    Footer
 
 
 } from './styles';
 import { StatusBar } from "react-native";
+import { Button } from "../../components/Button";
 
 
 export function Register() {
@@ -42,14 +44,12 @@ export function Register() {
                 <Input 
                 style={{ width: '95%', height: '15%', marginLeft: 'auto', marginRight: 'auto' }}/>
     
-            <HourWrapper>
-                <Image source={{uri: 'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834' }}></Image>
-                </HourWrapper>
+            <HourWrapper>                
                 <View>
                     <TextDates>Assistir em</TextDates>
-                    <Input style={{ width: '35%', marginLeft: '2.5%', marginBottom: '1%'}}/>
+                    <Input style={{ width: '150%', marginLeft: '2.5%', marginBottom: '1%'}}/>
                     <TextDates>Horario</TextDates>
-                    <Input style={{ width: '35%', marginLeft: '2.5%'}}/>
+                    <Input style={{ width: '150%', marginLeft: '2.5%'}}/>
                 
                 <CheckWrapper>
                 <BouncyCheckbox fillColor='black' onPress={(isChecked: boolean) => {}}/>
@@ -57,6 +57,14 @@ export function Register() {
                 </CheckWrapper>
             
             </View>
+            <Image source={{uri: 'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834' }}></Image>
+            </HourWrapper>
+            <Footer>
+                <Button 
+                    title='Remover' 
+                    type='salvar'
+                />
+            </Footer>
     
         </Container>
      );

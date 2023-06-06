@@ -63,7 +63,6 @@ export function MovieDetails() {
                 type='remover'
                 onPress={handleDelet}               
             />
-
         </Footer>
             
     </Container>

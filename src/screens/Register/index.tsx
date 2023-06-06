@@ -1,5 +1,6 @@
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Input } from "../../components/Input";
+import { useNavigation } from '@react-navigation/native';
 
 import {
     Container, 
@@ -18,9 +19,20 @@ import {
 } from './styles';
 import { StatusBar } from "react-native";
 import { Button } from "../../components/Button";
+import { useState } from "react";
 
 
 export function Register() {
+
+    const [filmName, setFilmName] = useState('');
+    const [categoryName, setCategoryName] = useState('');
+
+
+    const navigation = useNavigation<any>();
+    
+    function handleSave(){
+        navigation.navigate('Filme')
+    }
     return (
         <Container>
             <StatusBar barStyle={'dark-content'} />
@@ -63,7 +75,7 @@ export function Register() {
             <Button 
                     title='Remover' 
                     type='salvar'
-            
+                    onPress={handleSave}             
                 />
             <Footer>
                 

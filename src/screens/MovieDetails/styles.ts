@@ -65,12 +65,12 @@ export const View = styled.View`
 export const Text = styled.Text`
   font-size: 15px;
   margin-left: -10px;
+  
 `;
 
-export const Footer = styled.View`
+export const Footer = styled.View` 
+  margin-top: 50px;
   flex-direction: row;
   justify-content: space-between;
-  padding: 50px;
- 
 `;
 

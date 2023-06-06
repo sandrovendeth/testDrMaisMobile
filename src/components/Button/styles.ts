@@ -1,43 +1,53 @@
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React from 'react';
+import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
 interface ButtonProps {
-    type: 'editar' | 'remover' | 'confirmar' | 'cancelar' | 'salvar';
+  type: 'editar' | 'remover' | 'confirmar' | 'cancelar' | 'salvar';
 }
 
-export const Container = styled(TouchableOpacity)<ButtonProps>`
-    width: 100%;
-   
-    ${({ type }) => {
-        let color;
-        switch (type) {
-            case 'remover':
-                color = '#e80231';
-                break;
-            case 'cancelar':
-                color = '#ca9f45';
-                break;
-            case 'salvar':
-                color = '#69f55a';
-                break;
-            case 'editar':
-                color = '#527ffc';
-                break;
-            default:
-                color = '#000000';
-                break;
-        }
-        return `
-            background-color: ${color};
-        `;
-    }}
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+export const Container = styled(RectButton)<ButtonProps>`
+  padding: 10px;
+  border-radius: 5px;
+  flex: 1;
+
+  ${({ type }) => {
+    let backgroundColor;
+    let textColor;
+
+    switch (type) {
+      case 'remover':
+        backgroundColor = '#e80231';
+        textColor = '#ffffff';
+        break;
+      case 'cancelar':
+        backgroundColor = '#ca9f45';
+        textColor = '#ffffff';
+        break;
+      case 'salvar':
+        backgroundColor = '#228B22';
+        textColor = '#ffffff';
+        break;
+      case 'editar':
+        backgroundColor = '#527ffc';
+        textColor = '#ffffff';
+        break;
+      default:
+        backgroundColor = '#000000';
+        textColor = '#ffffff';
+        break;
+    }
+
+    return `
+      background-color: ${backgroundColor};
+      color: ${textColor};
+    `;
+  }}
 `;
 
 export const Text = styled.Text`
   font-size: 20px;
   color: white;
+  text-align: center;
+  
 `;

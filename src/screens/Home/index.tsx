@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Title, Input, MovieList } from './styles';
 import { MovieCard } from '../../components/MovieCard';
 import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import  api  from '../../services/api'
+
 
 interface MovieProps {
   name: string;
@@ -20,6 +23,15 @@ export function Home() {
   function handleDetails() {
     navigation.navigate('MovieDetails');
   }
+
+  useEffect(() =>{
+      async function fetchMovies() {
+        const response = await api.get('http://192.168.0.107:3333/filmes');
+        console.log(response)
+     } 
+
+     fetchMovies();
+  }, [])
 
   const movieData: MovieProps = {
     name: 'Diamante de Sangue',

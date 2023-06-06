@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import  ActionModal  from "../../components/ActionModal"
+
 
 import {
     Container, 
@@ -20,14 +22,21 @@ import {
 } from './styles';
 
 export function MovieDetails() {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+
   const navigation = useNavigation<any>();
     
-
   function handleEdit() {
     navigation.navigate('Cadastrar');
   }
+
   function handleDelet() {
-    
+    setModalVisible(true)  
+  }
+  function closeModal() {
+    setModalVisible(false)
   }
  return (
     <Container>      
@@ -74,7 +83,13 @@ export function MovieDetails() {
                 onPress={handleDelet}               
             />
         </Footer>
-            
+
+           <ActionModal 
+                onClose={() => setModalVisible(false)}
+                visible={modalVisible}
+           >
+           </ActionModal> 
+          
     </Container>
  );
 }

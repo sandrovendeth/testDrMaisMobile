@@ -56,6 +56,17 @@ export const Sinopse = styled.Text`
 
 `;
 
+export const View = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15px;
+  
+`;
+export const Text = styled.Text`
+  font-size: 15px;
+  margin-left: -10px;
+`;
+
 export const Footer = styled.View`
   flex-direction: row;
   justify-content: space-between;

@@ -6,7 +6,6 @@ import { MovieDetails } from "../screens/MovieDetails";
 import { Register } from "../screens/Register";
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +18,11 @@ function DetailScreen() {
         component={MovieDetails}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="RegisterScreen"
+        component={Register}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -27,27 +31,26 @@ function DetailScreen() {
 function Routes() {
   return (
     <Tab.Navigator
-    screenOptions={{headerShown:false}}
+      screenOptions={{ headerShown: false }}
     >
       <Tab.Screen
         name="Filme"
         component={Home}
-        options={{title: 'Cadastrar',
-          tabBarIcon:({size,color}) => (
-              <MaterialCommunityIcons name="home"
-              size={size} color={color} />
+        options={{
+          title: 'Filme',
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons name="home" size={size} color={color} />
           )
-      }}
+        }}
       />
       <Tab.Screen
         name="Cadastrar"
         component={Register}
-        options={{title: 'Cadastrar',
-          tabBarIcon:({size,color}) => (
-              <MaterialCommunityIcons name="details"
-              size={size} color={color} />
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons name="details" size={size} color={color} />
           )
-      }}
+        }}
       />
     </Tab.Navigator>
   );
@@ -58,16 +61,15 @@ function Auth() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{headerShown:false}}
+        screenOptions={{ headerShown: false }}
       >
         <Stack.Screen
           name="App"
           component={Routes}
         />
         <Stack.Screen
-          name="Detalhes"
+          name="MovieDetails"
           component={DetailScreen}
-       
         />
       </Stack.Navigator>
     </NavigationContainer>

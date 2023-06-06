@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 import {
     Container, 
@@ -12,17 +14,21 @@ import {
     DateWatch, 
     Sinopse,  
     Image, 
-    Footer, 
+    Footer,
+    View, 
+    Text
 } from './styles';
 
-function handleEdit(){
-
-}
-function handleDelet(){
-
-}
-
 export function MovieDetails() {
+  const navigation = useNavigation<any>();
+    
+
+  function handleEdit() {
+    navigation.navigate('Cadastrar');
+  }
+  function handleDelet() {
+    
+  }
  return (
     <Container>      
         <Header>
@@ -50,7 +56,11 @@ export function MovieDetails() {
 
                 <Sinopse>
                     Um terrorista internacional conhecido apenas como “Diamante Vermelho” traça um plano para colapsar a civilização global: desligar permanentemente todos os computadores do mundo.
-                </Sinopse>             
+                </Sinopse>
+                <View>
+                    <BouncyCheckbox fillColor='black'/>
+                    <Text>Assistido</Text>
+                </View>         
 
         <Footer>
             <Button 

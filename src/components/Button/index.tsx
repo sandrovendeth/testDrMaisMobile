@@ -12,9 +12,9 @@ interface Props extends TouchableOpacity{
 
 }
 
-export function Button({title, onPress, ...rest}: Props) {
+export function Button({title, ...rest}: Props) {
  return (
-    <Container onPress={onPress}{...rest}>
+    <Container {...rest}>
         <Text>{title}</Text>
     </Container>
  );

@@ -58,12 +58,15 @@ export function Register() {
             
             </View>
             <Image source={{uri: 'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834' }}></Image>
+            
             </HourWrapper>
-            <Footer>
-                <Button 
+            <Button 
                     title='Remover' 
                     type='salvar'
+            
                 />
+            <Footer>
+                
             </Footer>
     
         </Container>

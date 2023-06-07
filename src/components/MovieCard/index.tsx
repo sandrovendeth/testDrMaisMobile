@@ -13,7 +13,6 @@ interface Props extends RectButtonProps{
 }
 
 export function MovieCard({ data, ...rest }: Props) {
-    console.log(data)
  return (
     <Container {...rest} >
         <Image source = {{uri: data.imagem}}/>
@@ -21,7 +20,7 @@ export function MovieCard({ data, ...rest }: Props) {
             <TextTittle>{data.nome}</TextTittle>
             <View>
                 <TextStyle>{data.categoria}</TextStyle>
-                <TextHourDuration>(1h 36min)</TextHourDuration>
+                <TextHourDuration>{data.duracao}</TextHourDuration>
             </View>
             <View>
                 <TextDate>{data.data_assistir}</TextDate>

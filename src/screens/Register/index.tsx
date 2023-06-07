@@ -1,6 +1,15 @@
+import * as Yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { Input } from "../../components/Input";
-import { useNavigation } from "@react-navigation/native";
+import uuid from "react-native-uuid";
+
+import { InputForm } from "../../components/InputForm";
 import { FilmDTO } from "../../dtos/FilmDTO";
 
 import {
@@ -18,24 +27,95 @@ import {
 } from "./styles";
 import { StatusBar } from "react-native";
 import { Button } from "../../components/Button";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
+import api from "../../services/api";
 
 interface Props {
-  data: FilmDTO, 
+  data: FilmDTO;
 }
 
-export function Register({data, ...rest}: Props) {
-  const [filmes, setFilmes] = useState<FilmDTO[]>([]);
+interface Params {
+  idFilm: string;
+}
 
-  const [filmName, setFilmName] = useState("");
-  const [categoryName, setCategoryName] = useState("");
+export function Register({ data, ...rest }: Props) {
+  const route = useRoute();
 
   const navigation = useNavigation<any>();
 
-  function handleSave() {
-    navigation.navigate("Filme");
+  let idFilme: string;
+
+  if (route.params) {
+    const { idFilm } = route.params as Params;
+    idFilme = idFilm;
   }
+
+  const schema = Yup.object().shape({
+    nome: Yup.string().required("O topico é obrigatorio"),
+    categoria: Yup.string().required("O topico é obrigatorio"),
+    sinopse: Yup.string().required("A sinopse é obrigatorio"),
+    duracao: Yup.string().required("O campo de duração é obrigatorio"),
+    //  imagem: Yup.string().required("O topico é obrigatorio"),
+    data_assistir: Yup.string().required("A mensagem é obrigatoria"),
+    hora_assistir: Yup.string().required("A mensagem é obrigatoria"),
+    //assistido: Yup.string().required("A mensagem é obrigatoria"),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  async function handleEdit(form: FilmDTO) {
+    const body = {
+      nome: form.nome,
+      categoria: form.categoria,
+      sinopse: form.sinopse,
+      duracao: form.duracao,
+      data_assistir: form.data_assistir,
+      hora_assistir: form.hora_assistir,
+      assistido: form.assistido,
+    };
+    
+      // se haver o idfilmes ele dara o put para alterar os dados existentes, se não irá dar o post para cadastar novos dados
+    try {
+      if (route.params) {
+        await api.put(`/filmes/${idFilme}`, body);
+      } else {
+        await api.post(`/filmes`, { idfilme: String(uuid.v4()), ...body });
+      }
+
+      reset();
+      navigation.navigate("Filme");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      console.log("route.params", route.params);
+      reset();
+      async function getFilmById() {
+        try {
+          const response = await api.get(`/filmes/${idFilme}`);
+          reset(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      if (route.params) {
+        getFilmById();
+      }
+    }, [])
+  );
+
   return (
     <Container {...rest}>
       <StatusBar barStyle={"dark-content"} />
@@ -44,52 +124,66 @@ export function Register({data, ...rest}: Props) {
       </Header>
       <ScrollView>
         <Text>Filme</Text>
-        <Input
+        <InputForm
+          name="nome"
+          control={control}
           style={{ marginTop: 5, marginLeft: 5 }}
           placeholder="Digite o nome do filme"
           placeholderTextColor="#888"
-          value={filmName}
-          onChangeText={setFilmName}
+          error={errors.nome?.message}
         />
 
         <Text>Categoria</Text>
-        <Input
+        <InputForm
+          name="categoria"
+          control={control}
           style={{ marginTop: 5, marginLeft: 5 }}
           placeholder="Digite a categoria"
           placeholderTextColor="#888"
-          value={categoryName}
-          onChangeText={setCategoryName}
+          error={errors.categoria?.message}
         />
 
         <Text>Duração</Text>
-        <Input
+        <InputForm
+          name="duracao"
+          control={control}
           style={{ marginTop: 5, marginLeft: 5 }}
           placeholder="Digite a duração"
           placeholderTextColor="#888"
+          error={errors.duracao?.message}
         />
 
         <Text>Sinopse</Text>
-        <Input
+        <InputForm
+          name="sinopse"
+          control={control}
           style={{ marginTop: 5, marginLeft: 5, height: 80 }}
           placeholder="Digite a sinopse"
-          multiline
           placeholderTextColor="#888"
+          error={errors.sinopse?.message}
         />
 
         <HourWrapper>
           <View>
             <TextDates>Assistir em</TextDates>
-            <Input
+            <InputForm
+              name="data_assistir"
+              control={control}
               style={{ marginTop: 5 }}
               placeholder="Digite a data de assistir"
               placeholderTextColor="#888"
+              error={errors.data_assistir?.message}
             />
             <TextDates>Horário</TextDates>
-            <Input
+            <InputForm
+              name="hora_assistir"
+              control={control}
               style={{ marginTop: 5 }}
               placeholder="Digite o horário"
               placeholderTextColor="#888"
+              error={errors.hora_assistir?.message}
             />
+            
 
             <CheckWrapper>
               <BouncyCheckbox
@@ -101,12 +195,18 @@ export function Register({data, ...rest}: Props) {
             </CheckWrapper>
           </View>
           <Image
-            source={{uri: "https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834"}}
+            source={{
+              uri: "https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834",
+            }}
           ></Image>
         </HourWrapper>
 
         <Footer>
-          <Button title="Salvar" type="salvar" onPress={handleSave} />
+          <Button
+            title="Salvar"
+            type="salvar"
+            onPress={handleSubmit(handleEdit)}
+          />
         </Footer>
       </ScrollView>
     </Container>

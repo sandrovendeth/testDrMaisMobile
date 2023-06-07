@@ -22,6 +22,7 @@ export function Home() {
       async function fetchMovies() {
         try {
           const response = await api.get("http://192.168.4.4:3333/filmes");
+
           setFilms(response.data);
         } catch (error) {
           console.log(error);
@@ -48,8 +49,7 @@ export function Home() {
         data={films}
         keyExtractor={(item) => item.idfilme}
         renderItem={({ item }: { item: FilmDTO }) => (
-          <MovieCard data={item} onPress={() => handleDetails(item.idfilme)} 
-          />
+          <MovieCard data={item} onPress={() => handleDetails(item.idfilme)} />
         )}
       />
     </Container>

@@ -66,3 +66,5 @@ export const Footer = styled.View`
   padding: 20px;
 
 `;
+
+

@@ -39,7 +39,7 @@ export function MovieDetails() {
   const { idfilmes } = route.params as Params;
 
   function handleEdit() {
-    navigation.navigate("Cadastrar");
+    navigation.navigate("RegisterScreen", { idFilm: films.idfilme });
   }
 
   async function handleConfirm() {
@@ -55,9 +55,7 @@ export function MovieDetails() {
   useEffect(() => {
     async function fetchDetails() {
       try {
-        console.log(idfilmes);
         const response = await api.get(`/filmes/${idfilmes}`);
-        console.log(response);
 
         setFilms(response.data);
       } catch (error) {

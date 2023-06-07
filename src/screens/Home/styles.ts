@@ -1,20 +1,9 @@
-import styled from 'styled-components/native';
-import { FlatList } from 'react-native';
-
-import  { FilmDTO } from '../../dtos/FilmDTO'
-
-const movieData = {
-  name: 'Diamante de Sangue',
-  style: 'Ação',
-  duration: '(1h 36min)',
-  date: '06/06/2023',
-  hour: 'às 14:30h',
-  thumbnail: 'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834' 
-}
+import styled from "styled-components/native";
+import { FlatList } from "react-native";
 
 export const Container = styled.View`
   flex: 1;
-
+  
   align-items: flex-start;
   justify-content: flex-start;
   align-items: center;
@@ -38,12 +27,11 @@ export const Input = styled.TextInput`
   border-radius: 5px;
   padding: 10px;
   color: black;
-  border-color: #0D0D0D;
+  border-color: #0d0d0d;
   border-width: 1px;
   margin-bottom: 30px;
   background-color: white;
-  
 `;
 export const MovieList = styled(FlatList).attrs({
-    showsVerticalScrollIndicator: false
+  showsVerticalScrollIndicator: false,
 })`` as React.ComponentType as new <DataListProps>() => FlatList<DataListProps>;

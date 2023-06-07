@@ -19,7 +19,7 @@ interface ModalProps {
   children?: any
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, onClose, handleConfirm }) => {
+const Modal: React.FC<ModalProps> = ({ visible, onClose, handleConfirm }) => { //passa a  função de deletar por props do componente pai (handleConfirm)
  
   return (
     <RNModal

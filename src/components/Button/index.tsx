@@ -3,7 +3,7 @@ import React from 'react';
 import {
      Container, Text
 } from './styles';
-import { RectButtonProps, TouchableOpacity } from 'react-native-gesture-handler';
+import { RectButtonProps } from 'react-native-gesture-handler';
 
 interface Props extends RectButtonProps{
     title: string;

@@ -42,6 +42,7 @@ export const TextHour = styled.Text`
     color: #888;
 `;
 export const Image = styled.Image`
+    margin-right: 15px;
     width: 40%;
     height: 100px;
     border-radius: 8px;

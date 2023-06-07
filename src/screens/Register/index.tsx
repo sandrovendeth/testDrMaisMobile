@@ -44,6 +44,8 @@ export function Register({ data, ...rest }: Props) {
 
   const navigation = useNavigation<any>();
 
+  const [imagem, setImagem] = useState<string>("");
+
   let idFilme: string;
 
   if (route.params) {
@@ -56,7 +58,7 @@ export function Register({ data, ...rest }: Props) {
     categoria: Yup.string().required("O topico é obrigatorio"),
     sinopse: Yup.string().required("A sinopse é obrigatorio"),
     duracao: Yup.string().required("O campo de duração é obrigatorio"),
-    //  imagem: Yup.string().required("O topico é obrigatorio"),
+    // imagem: Yup.string().required("O topico é obrigatorio"),
     data_assistir: Yup.string().required("A mensagem é obrigatoria"),
     hora_assistir: Yup.string().required("A mensagem é obrigatoria"),
     //assistido: Yup.string().required("A mensagem é obrigatoria"),
@@ -80,9 +82,10 @@ export function Register({ data, ...rest }: Props) {
       data_assistir: form.data_assistir,
       hora_assistir: form.hora_assistir,
       assistido: form.assistido,
+      imagem: form.imagem
     };
-    
-      // se haver o idfilmes ele dara o put para alterar os dados existentes, se não irá dar o post para cadastar novos dados
+
+    // se haver o idfilmes ele dara o put para alterar os dados existentes, se não irá dar o post para cadastar novos dados
     try {
       if (route.params) {
         await api.put(`/filmes/${idFilme}`, body);
@@ -162,6 +165,15 @@ export function Register({ data, ...rest }: Props) {
           placeholderTextColor="#888"
           error={errors.sinopse?.message}
         />
+        <InputForm
+          name="imagem"
+          control={control}
+          style={{ marginTop: 5, marginLeft: 5 }}
+          placeholder="Digite o endereço da imagem"
+          placeholderTextColor="#888"
+          error={errors.imagem?.message}
+          onChangeText={(text: string) => setImagem(text)}
+        />
 
         <HourWrapper>
           <View>
@@ -183,7 +195,6 @@ export function Register({ data, ...rest }: Props) {
               placeholderTextColor="#888"
               error={errors.hora_assistir?.message}
             />
-            
 
             <CheckWrapper>
               <BouncyCheckbox
@@ -195,9 +206,7 @@ export function Register({ data, ...rest }: Props) {
             </CheckWrapper>
           </View>
           <Image
-            source={{
-              uri: "https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834",
-            }}
+            source={{ uri: imagem }}
           ></Image>
         </HourWrapper>
 

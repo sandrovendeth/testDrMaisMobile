@@ -1,3 +1,22 @@
 {
-  "filmes": []
+  "filmes": [
+    {
+      "nome": "Kkkkk",
+      "categoria": "Kkkk",
+      "sinopse": "Kkkkkk",
+      "duracao": "Lkkkkkk",
+      "data_assistir": "Kkkkk",
+      "hora_assistir": "Kkkkk",
+      "idfilme": "5ddd0067-b19e-480f-89fa-6f7da49e9ff6"
+    },
+    {
+      "idfilme": "087c8b2b-4b0d-41e5-a4c2-a96e1b7988c4",
+      "nome": "Lkk",
+      "categoria": "Mkk",
+      "sinopse": "Lkkk",
+      "duracao": "Mkkk",
+      "data_assistir": "Lkk",
+      "hora_assistir": "Kkkk"
+    }
+  ]
 }

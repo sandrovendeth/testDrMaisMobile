@@ -44,16 +44,15 @@ export function MovieDetails() {
     navigation.navigate('Cadastrar');
   }
 
-  async function handleDelet() {
-    
+  async function handleConfirm() {
     try {
-     await api.delete(`/filmes/${idfilmes}`)
-     setModalVisible(true)
-     navigation.navigate('Home')    
-
-  } catch (error) {
-      console.log(error)
-    }
+      await api.delete(`/filmes/${idfilmes}`)
+      setModalVisible(false)
+      navigation.navigate('Filme');   
+ 
+   } catch (error) {
+       console.log(error)
+     }
   }
 
   useEffect(() =>{
@@ -78,7 +77,7 @@ export function MovieDetails() {
         </Header>
                             
         <InfoWrapper>
-            <Image source={{uri: 'https://www.cafecomfilme.com.br/media/k2/items/cache/d063d8b7c1471349d2847c26ce4e4d8c_XL.jpg?t=20211107_201834'}} />
+            <Image source={{uri: films.imagem}} />
                 <DetailsWrapper>   
                     <Category>
                         Categoria:{'\n'}
@@ -113,12 +112,12 @@ export function MovieDetails() {
             <Button
                 title='Remover' 
                 type='remover'
-                onPress={handleDelet}               
+                onPress={() => setModalVisible(true)}               
             />
         </Footer>
 
            <ActionModal 
-                handleConfirm={() => handleDelet()}
+                handleConfirm={() => handleConfirm()}
                 onClose={() => setModalVisible(false)}
                 visible={modalVisible}
            >

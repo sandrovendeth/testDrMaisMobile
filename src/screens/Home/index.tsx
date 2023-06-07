@@ -44,7 +44,9 @@ export function Home() {
       <Input
         placeholder="Pesquise pelo nome ou categoria de filme"
         placeholderTextColor="#888"
-      ></Input>
+      >
+        
+      </Input>
 
       <MovieList
         data={films}

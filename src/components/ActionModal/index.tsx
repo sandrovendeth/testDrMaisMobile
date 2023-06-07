@@ -1,18 +1,16 @@
 
-import React from 'react';
-import { Modal as RNModal, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Modal as RNModal} from 'react-native';
 
 
 import {
     Overlay, 
     Content, 
-    CloseButton, 
-    CloseButtonText,
     TextModal,
     View
 } from './styles';
 import { Button } from '../Button';
+
 
 interface ModalProps {
   visible: boolean;
@@ -21,14 +19,8 @@ interface ModalProps {
   children?: any
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, onClose, children }) => {
-    const navigation = useNavigation<any>();
-    
-    function handleConfirm() {
-      navigation.navigate('Filme');
-    }
-    
-
+const Modal: React.FC<ModalProps> = ({ visible, onClose, handleConfirm }) => {
+ 
   return (
     <RNModal
       visible={visible}

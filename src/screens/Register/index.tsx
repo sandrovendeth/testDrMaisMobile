@@ -44,7 +44,7 @@ export function Register({ data, ...rest }: Props) {
 
   const navigation = useNavigation<any>();
 
-  const [imagem, setImagem] = useState<string>("");
+  const [imagem, setImagem] = useState<string>();
 
   let idFilme: string;
 
@@ -74,6 +74,7 @@ export function Register({ data, ...rest }: Props) {
   });
 
   async function handleEdit(form: FilmDTO) {
+    console.log(form);
     const body = {
       nome: form.nome,
       categoria: form.categoria,
@@ -82,8 +83,10 @@ export function Register({ data, ...rest }: Props) {
       data_assistir: form.data_assistir,
       hora_assistir: form.hora_assistir,
       assistido: form.assistido,
-      imagem: form.imagem
+      imagem: form.imagem,
     };
+ 
+    console.log(form);
 
     // se haver o idfilmes ele dara o put para alterar os dados existentes, se não irá dar o post para cadastar novos dados
     try {
@@ -91,6 +94,8 @@ export function Register({ data, ...rest }: Props) {
         await api.put(`/filmes/${idFilme}`, body);
       } else {
         await api.post(`/filmes`, { idfilme: String(uuid.v4()), ...body });
+
+        console.log(body);
       }
 
       reset();
@@ -99,7 +104,7 @@ export function Register({ data, ...rest }: Props) {
       console.log(error);
     }
   }
-
+  
   useFocusEffect(
     useCallback(() => {
       console.log("route.params", route.params);
@@ -115,6 +120,7 @@ export function Register({ data, ...rest }: Props) {
 
       if (route.params) {
         getFilmById();
+        
       }
     }, [])
   );
@@ -165,11 +171,12 @@ export function Register({ data, ...rest }: Props) {
           placeholderTextColor="#888"
           error={errors.sinopse?.message}
         />
+        <Text>Imagem</Text>
         <InputForm
           name="imagem"
           control={control}
           style={{ marginTop: 5, marginLeft: 5 }}
-          placeholder="Digite o endereço da imagem"
+          placeholder="Digite a url da imagem"
           placeholderTextColor="#888"
           error={errors.imagem?.message}
           onChangeText={(text: string) => setImagem(text)}
@@ -205,9 +212,7 @@ export function Register({ data, ...rest }: Props) {
               <TextCheck>Assistido</TextCheck>
             </CheckWrapper>
           </View>
-          <Image
-            source={{ uri: imagem }}
-          ></Image>
+          <Image source={{ uri: imagem }}></Image>
         </HourWrapper>
 
         <Footer>

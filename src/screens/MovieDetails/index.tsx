@@ -22,6 +22,8 @@ import {
 } from "./styles";
 import api from "../../services/api";
 import { FilmDTO } from "../../dtos/FilmDTO";
+import { StatusBar } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface Params {
   idfilmes: string;
@@ -67,29 +69,31 @@ export function MovieDetails() {
 
   return (
     <Container>
+      <StatusBar barStyle={"dark-content"} />
       <Header>
         <Title>{films.nome}</Title>
       </Header>
+      <ScrollView>
+        <InfoWrapper>
+          <Image source={{ uri: films.imagem }} />
+          <DetailsWrapper>
+            <Category>
+              Categoria:{"\n"}
+              {films.categoria}
+            </Category>
+            <Duration>
+              Duração:{"\n"}
+              {films.duracao}
+            </Duration>
+            <DateWatch>
+              Assistir em:{"\n"}
+              {films.data_assistir} as {films.hora_assistir}
+            </DateWatch>
+          </DetailsWrapper>
+        </InfoWrapper>
 
-      <InfoWrapper>
-        <Image source={{ uri: films.imagem }} />
-        <DetailsWrapper>
-          <Category>
-            Categoria:{"\n"}
-            {films.categoria}
-          </Category>
-          <Duration>
-            Duração:{"\n"}
-            {films.duracao}
-          </Duration>
-          <DateWatch>
-            Assistir em:{"\n"}
-            {films.data_assistir} as {films.hora_assistir}
-          </DateWatch>
-        </DetailsWrapper>
-      </InfoWrapper>
-
-      <Sinopse>{films.sinopse}</Sinopse>
+        <Sinopse>{films.sinopse}</Sinopse>
+      </ScrollView>
       <View>
         <BouncyCheckbox fillColor="black" />
         <Text>Assistido</Text>
@@ -97,6 +101,9 @@ export function MovieDetails() {
 
       <Footer>
         <Button title="Editar" type="editar" onPress={handleEdit} />
+      </Footer>
+
+      <Footer>
         <Button
           title="Remover"
           type="remover"

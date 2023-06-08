@@ -35,3 +35,7 @@ export const Input = styled.TextInput`
 export const MovieList = styled(FlatList).attrs({
   showsVerticalScrollIndicator: false,
 })`` as React.ComponentType as new <DataListProps>() => FlatList<DataListProps>;
+
+export const EmptyText = styled.Text`
+  flex: 1;
+`;

@@ -63,6 +63,7 @@ export const View = styled.View`
   flex-direction: row;
   align-items: center;
   margin: 20px;
+  margin-bottom: 120px ;
 `;
 
 export const Text = styled.Text`

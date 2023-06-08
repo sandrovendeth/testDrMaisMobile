@@ -38,7 +38,7 @@ function Routes() {
         component={Home}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="home" size={size} color={color} />
+            <MaterialCommunityIcons name="movie-check" size={35} color={color} />
           )
         }}
       />
@@ -47,7 +47,7 @@ function Routes() {
         component={Register}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="details" size={size} color={color} />
+            <MaterialCommunityIcons name="pencil-circle" size={35} color={color} />
           )
         }}
       />

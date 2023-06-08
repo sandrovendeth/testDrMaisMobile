@@ -1,22 +1,14 @@
 {
   "filmes": [
     {
-      "nome": "Kkkkk",
-      "categoria": "Kkkk",
-      "sinopse": "Kkkkkk",
-      "duracao": "Lkkkkkk",
-      "data_assistir": "Kkkkk",
-      "hora_assistir": "Kkkkk",
-      "idfilme": "5ddd0067-b19e-480f-89fa-6f7da49e9ff6"
-    },
-    {
-      "idfilme": "087c8b2b-4b0d-41e5-a4c2-a96e1b7988c4",
-      "nome": "Lkk",
-      "categoria": "Mkk",
-      "sinopse": "Lkkk",
-      "duracao": "Mkkk",
-      "data_assistir": "Lkk",
-      "hora_assistir": "Kkkk"
+      "nome": "Interestellar",
+      "categoria": "Ficção científica ",
+      "sinopse": "As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie",
+      "duracao": "3 horas ",
+      "data_assistir": "10/06/2023",
+      "hora_assistir": "15 horas",
+      "imagem": "https://1.bp.blogspot.com/-jYGOODdy0Es/YUItjuBQNWI/AAAAAAABHE0/NeXyB7BdzQ8vUS8eauzZJjnb4kbBJ_t3wCLcBGAsYHQ/s1600/Interstellar.jpg",
+      "idfilme": "9c1ac255-6d78-48f7-83ef-fc199820042f"
     }
   ]
 }

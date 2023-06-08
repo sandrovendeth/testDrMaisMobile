@@ -1,7 +1,7 @@
 {
   "filmes": [
     {
-      "nome": "Interestellar",
+      "nome": "Interestelar",
       "categoria": "Ficção científica ",
       "sinopse": "As reservas naturais da Terra estão chegando ao fim e um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie",
       "duracao": "3 horas ",
@@ -9,6 +9,36 @@
       "hora_assistir": "15 horas",
       "imagem": "https://1.bp.blogspot.com/-jYGOODdy0Es/YUItjuBQNWI/AAAAAAABHE0/NeXyB7BdzQ8vUS8eauzZJjnb4kbBJ_t3wCLcBGAsYHQ/s1600/Interstellar.jpg",
       "idfilme": "9c1ac255-6d78-48f7-83ef-fc199820042f"
+    },
+    {
+      "nome": "Velozes e Furiosos 1",
+      "categoria": "Ação ",
+      "sinopse": "Dominic Toretto (Vin Diesel) é o líder de uma gangue de corridas de ruas em Los Angeles que está sendo investigado pela polícia por roubo de equipamentos eletrônicos. Para investigá-lo é enviado Brian O'Conner (Paul Walker)",
+      "duracao": "2 horas ",
+      "data_assistir": "15/06/2023",
+      "hora_assistir": "19 horas",
+      "imagem": "https://br.web.img3.acsta.net/c_310_420/medias/nmedia/18/87/23/46/19873389.jpg",
+      "idfilme": "786398fc-81fc-49a3-a6a9-9449bdc8f3e4"
+    },
+    {
+      "nome": "O Poderoso Chefão ",
+      "categoria": "Violência ",
+      "sinopse": "Don Vito Corleone (Marlon Brando) é o chefe de uma \"família\" de Nova York que está feliz, pois Connie (Talia Shire), sua filha, se casou com Carlo (Gianni Russo). Porém, durante a festa, Bonasera (Salvatore Corsitto) é visto no escritório de Don Corleone pedindo \"justiça\", vingança na verdade contra membros de uma quadrilha,",
+      "duracao": "3:30 horas",
+      "data_assistir": "22/06/2023",
+      "hora_assistir": "23:00",
+      "imagem": "https://leiturafilmica.com.br/wp-content/uploads/2021/07/o-poderoso-chefao-poster.png",
+      "idfilme": "5043491f-6f22-4115-9687-0991b2492693"
+    },
+    {
+      "idfilme": "3c1889d8-5bf5-47c6-83a8-ccde1ffaf957",
+      "nome": "Senhor dos Anéis ",
+      "categoria": "Aventura",
+      "sinopse": "Após a captura de Merry (Dominic Monaghan) e Pippy (Billy Boyd) pelos orcs, a Sociedade do Anel é dissolvida. Enquanto que Frodo (Elijah Wood) e Sam (Sean Astin) seguem sua jornada rumo à Montanha da Perdição para destruir o Um Anel",
+      "duracao": "3:30",
+      "data_assistir": "30/06/23",
+      "hora_assistir": "17:00",
+      "imagem": "https://br.web.img2.acsta.net/medias/nmedia/18/92/34/89/20194741.jpg"
     }
   ]
 }

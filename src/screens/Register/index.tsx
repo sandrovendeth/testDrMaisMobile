@@ -179,7 +179,7 @@ export function Register({ data, ...rest }: Props) {
           placeholder="Digite a url da imagem"
           placeholderTextColor="#888"
           error={errors.imagem?.message}
-          onChangeText={(text: string) => setImagem(text)}
+
         />
 
         <HourWrapper>

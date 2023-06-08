@@ -21,7 +21,7 @@ export const Title = styled.Text`
 
 export const Input = styled.TextInput`
   height: 40px;
-  width: 92%;
+  width: 85%;
   margin-top: 30px;
 
   border-radius: 5px;
@@ -36,6 +36,12 @@ export const MovieList = styled(FlatList).attrs({
   showsVerticalScrollIndicator: false,
 })`` as React.ComponentType as new <DataListProps>() => FlatList<DataListProps>;
 
-export const EmptyText = styled.Text`
+export const View = styled.View`
+  flex-direction: row;
+  align-items: center;
+  
+`;
+export const ViwList = styled.View`
   flex: 1;
+  
 `;

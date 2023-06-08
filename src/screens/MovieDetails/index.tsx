@@ -93,11 +93,12 @@ export function MovieDetails() {
         </InfoWrapper>
 
         <Sinopse>{films.sinopse}</Sinopse>
-      </ScrollView>
+      
       <View>
         <BouncyCheckbox fillColor="black" />
         <Text>Assistido</Text>
       </View>
+      </ScrollView>
 
       <Footer>
         <Button title="Editar" type="editar" onPress={handleEdit} />

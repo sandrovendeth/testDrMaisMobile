@@ -57,6 +57,7 @@ export const Footer = styled.View`
   justify-content: space-between;
   flex-direction: row;
   padding: 20px;
+  padding-bottom: 30px;
 `;
 
 export const View = styled.View`

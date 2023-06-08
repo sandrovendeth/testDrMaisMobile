@@ -5,6 +5,7 @@ import { Home } from "../screens/Home";
 import { MovieDetails } from "../screens/MovieDetails";
 import { Register } from "../screens/Register";
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { FilmDTO } from "../dtos/FilmDTO";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

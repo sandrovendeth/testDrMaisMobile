@@ -35,6 +35,10 @@ interface Props {
   data: FilmDTO;
 }
 
+export interface FormData {
+  [name: string]: string;
+}
+
 interface Params {
   idFilm: string;
 }
@@ -58,7 +62,7 @@ export function Register({ data, ...rest }: Props) {
     categoria: Yup.string().required("O topico é obrigatorio"),
     sinopse: Yup.string().required("A sinopse é obrigatorio"),
     duracao: Yup.string().required("O campo de duração é obrigatorio"),
-    // imagem: Yup.string().required("O topico é obrigatorio"),
+    imagem: Yup.string().required("A imagem é obrigatorio"),
     data_assistir: Yup.string().required("A mensagem é obrigatoria"),
     hora_assistir: Yup.string().required("A mensagem é obrigatoria"),
     //assistido: Yup.string().required("A mensagem é obrigatoria"),
@@ -73,7 +77,7 @@ export function Register({ data, ...rest }: Props) {
     resolver: yupResolver(schema),
   });
 
-  async function handleEdit(form: FilmDTO) {
+  async function handleEdit(form: FormData) {
     console.log(form);
     const body = {
       nome: form.nome,

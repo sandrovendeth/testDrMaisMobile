@@ -48,7 +48,15 @@ export function Register({ data, ...rest }: Props) {
 
   const navigation = useNavigation<any>();
 
-  const [imagem, setImagem] = useState<string>();
+  const [imagem, setImagem] = useState<string>("");
+
+  const [assistido, setAssistido] = useState<boolean>(data?.assistido);
+
+  console.log(assistido);
+
+  function handleCheckboxPress(isChecked: boolean) {
+    setAssistido(isChecked);
+  }
 
   let idFilme: string;
 
@@ -62,7 +70,7 @@ export function Register({ data, ...rest }: Props) {
     categoria: Yup.string().required("O topico é obrigatorio"),
     sinopse: Yup.string().required("A sinopse é obrigatorio"),
     duracao: Yup.string().required("O campo de duração é obrigatorio"),
-    imagem: Yup.string().required("A imagem é obrigatorio"),
+    //imagem: Yup.string().required("A imagem é obrigatorio"),
     data_assistir: Yup.string().required("A mensagem é obrigatoria"),
     hora_assistir: Yup.string().required("A mensagem é obrigatoria"),
     //assistido: Yup.string().required("A mensagem é obrigatoria"),
@@ -78,7 +86,6 @@ export function Register({ data, ...rest }: Props) {
   });
 
   async function handleEdit(form: FormData) {
-    console.log(form);
     const body = {
       nome: form.nome,
       categoria: form.categoria,
@@ -89,8 +96,8 @@ export function Register({ data, ...rest }: Props) {
       assistido: form.assistido,
       imagem: form.imagem,
     };
- 
-    console.log(form);
+
+    body.imagem = imagem
 
     // se haver o idfilmes ele dara o put para alterar os dados existentes, se não irá dar o post para cadastar novos dados
     try {
@@ -98,20 +105,16 @@ export function Register({ data, ...rest }: Props) {
         await api.put(`/filmes/${idFilme}`, body);
       } else {
         await api.post(`/filmes`, { idfilme: String(uuid.v4()), ...body });
-
-        console.log(body);
       }
-
       reset();
       navigation.navigate("Filme");
     } catch (error) {
       console.log(error);
     }
   }
-  
+
   useFocusEffect(
     useCallback(() => {
-      console.log("route.params", route.params);
       reset();
       async function getFilmById() {
         try {
@@ -121,10 +124,8 @@ export function Register({ data, ...rest }: Props) {
           console.log(err);
         }
       }
-
       if (route.params) {
         getFilmById();
-        
       }
     }, [])
   );
@@ -183,7 +184,8 @@ export function Register({ data, ...rest }: Props) {
           placeholder="Digite a url da imagem"
           placeholderTextColor="#888"
           error={errors.imagem?.message}
-
+          value={imagem}
+          onChangeText={setImagem}
         />
 
         <HourWrapper>
@@ -196,6 +198,7 @@ export function Register({ data, ...rest }: Props) {
               placeholder="Digite a data de assistir"
               placeholderTextColor="#888"
               error={errors.data_assistir?.message}
+              editable={!assistido}
             />
             <TextDates>Horário</TextDates>
             <InputForm
@@ -205,18 +208,20 @@ export function Register({ data, ...rest }: Props) {
               placeholder="Digite o horário"
               placeholderTextColor="#888"
               error={errors.hora_assistir?.message}
+              editable={!assistido}
             />
 
             <CheckWrapper>
               <BouncyCheckbox
                 style={{ width: 20, height: 20 }}
                 fillColor="black"
-                onPress={(isChecked: boolean) => {}}
+                onPress={handleCheckboxPress}
+                isChecked={assistido}
               />
               <TextCheck>Assistido</TextCheck>
             </CheckWrapper>
           </View>
-          <Image source={{ uri: imagem }}></Image>
+          <Image source={{ uri: imagem}}></Image>
         </HourWrapper>
 
         <Footer>

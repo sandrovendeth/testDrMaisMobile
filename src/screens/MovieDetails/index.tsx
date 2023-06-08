@@ -34,11 +34,19 @@ export function MovieDetails() {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [assistido, setAssistido] = useState<any>();
+
   const navigation = useNavigation<any>();
 
   const route = useRoute();
 
   const { idfilmes } = route.params as Params;
+
+  console.log(assistido);
+
+  function handleCheckboxPress(isChecked: boolean) {
+    setAssistido(isChecked);
+  }
 
   function handleEdit() {
     navigation.navigate("RegisterScreen", { idFilm: films.idfilme });
@@ -58,7 +66,6 @@ export function MovieDetails() {
     async function fetchDetails() {
       try {
         const response = await api.get(`/filmes/${idfilmes}`);
-
         setFilms(response.data);
       } catch (error) {
         console.log(error);
@@ -66,6 +73,8 @@ export function MovieDetails() {
     }
     fetchDetails();
   }, []);
+
+ 
 
   return (
     <Container>
@@ -93,11 +102,15 @@ export function MovieDetails() {
         </InfoWrapper>
 
         <Sinopse>{films.sinopse}</Sinopse>
-      
-      <View>
-        <BouncyCheckbox fillColor="black" />
-        <Text>Assistido</Text>
-      </View>
+
+        <View>
+          <BouncyCheckbox
+            style={{ width: 20, height: 20 }}
+            fillColor="black"
+            onPress={handleCheckboxPress}
+          />
+          <Text>Assistido</Text>
+        </View>
       </ScrollView>
 
       <Footer>

@@ -23,6 +23,7 @@ export function Home() {
 
   // Dentro do useEffect, caso o usuário esteja digitando, entrando no else ele irá da um filter no qual pega o nome do filme ou a categoria, sendo maior que -1 que dizer ele achou na string específica, retornando true, jogando o film em List.
 
+
   useEffect(() => {
     if (searcText === "") {
       setFilms(originalFilms); // Usando os filmes originais
@@ -64,6 +65,7 @@ export function Home() {
       fetchMovies();
     }, [])
   );
+  
 
   return (
     <Container>
@@ -76,7 +78,7 @@ export function Home() {
           placeholder="Pesquise pelo nome ou categoria de filme"
           placeholderTextColor="#888"
         ></Input>
-        <TouchableOpacity onPress={Home}>
+        <TouchableOpacity >
           <MaterialCommunityIcons
             name="magnify"
             size={32}

@@ -53,7 +53,7 @@ export function Home() {
     useCallback(() => {
       async function fetchMovies() {
         try {
-          const response = await api.get("http://192.168.4.4:3333/filmes");
+          const response = await api.get("http://172.18.0.225:3333/filmes");
           setFilms(response.data);
           setOriginalFilms(response.data);
         } catch (error) {
